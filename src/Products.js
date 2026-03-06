@@ -58,7 +58,7 @@ export const Products = [
     image: prod6,
     name: "Muggo",
     des: "Small mug",
-    price: 2500000,
+    price: 250000,
     discountPercentage: 0,
     isNew: true,
   },
