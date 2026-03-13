@@ -3,6 +3,7 @@ import PageDirection from "./PageDirection";
 import ProductDetails from "./ProductDetails";
 import ProductDescription from "./ProductDescription";
 
+
 import { useParams } from "react-router-dom";
 
 export default function SingleProductPage() {
@@ -16,7 +17,8 @@ export default function SingleProductPage() {
     <section>
       <PageDirection product={product} />
       <ProductDetails  product={product}/>
-      <ProductDescription />
+      <ProductDescription product={product}/>
+      
     </section>
   );
 }

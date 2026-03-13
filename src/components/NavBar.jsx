@@ -4,10 +4,14 @@ import { Import, User } from "lucide-react";
 import { Search } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import {useCart} from "../Context/CartContext";
+import {useUser} from "../Context/UserContext";
+import SearchModal from "./SearchModal";
+import {Products} from "../Products";
+import CartDrawer from "./CartDrawer";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Shop", path: "/shop" },
@@ -15,7 +19,14 @@ export default function NavBar() {
     { name: "Contact", path: "/contact" },
   ];
 
+  const {cartCount} = useCart();
+  const [searchOpen , setSearchOpen] = useState(false);
+    const {user} = useUser();
+  const [cartOpen , setCartOpen] = useState(false);
+
+
   return (
+    <>
     <nav className="bg-[#FFFFFF] px-4">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center">
@@ -80,14 +91,23 @@ export default function NavBar() {
             </button>
             {/* Profile */}
 
-            <button aria-label="User" className="cursor-pointer">
+            <button  aria-label="User" className="cursor-pointer">
+              <Link to={user ? "/profile" : "/login"}>
               <User />
+              </Link>
             </button>
-            <button aria-label="Search Products" className="cursor-pointer">
-              <Search />
+            <button onClick={()=>setSearchOpen(true)}
+             aria-label="Search Products" className="cursor-pointer">
+              <Search />              
             </button>
-            <button aria-label="Shopping Cart" className="cursor-pointer">
+            <button onClick={()=>setCartOpen(true)}
+            aria-label="Shopping Cart" className="relative cursor-pointer">
               <ShoppingCart />
+              {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                    {cartCount}
+                  </span>
+                )}
             </button>
           </div>
         </div>
@@ -108,5 +128,15 @@ export default function NavBar() {
         </div>
       )}
     </nav>
+    <SearchModal
+     isOpen={searchOpen}
+     onClose={()=>setSearchOpen(false)}
+     products={Products}
+    />
+    <CartDrawer
+     isOpen={cartOpen}
+     onClose={()=>setCartOpen(false)}    
+    />
+    </>
   );
 }

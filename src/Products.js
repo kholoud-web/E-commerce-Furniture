@@ -22,6 +22,21 @@ export const Products = [
     isNew:false,
     details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
     detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+    rating:4.5,
+    reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 2,
@@ -33,6 +48,33 @@ export const Products = [
     isNew:false,
     details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
     detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+        rating:4.8,
+   reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    },
+    {
+      id:3,
+      name:"omar",
+      rating:4,
+      comment:"Very comfortable"
+    },
+    {
+      id:4,
+      name:"farida",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 3,
@@ -44,6 +86,21 @@ export const Products = [
     isNew:false,
    details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
    detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+       rating:4.6,
+    reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 4,
@@ -55,6 +112,21 @@ export const Products = [
     isNew: true,
     details:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus laboriosam harum. Nihil eos reprehenderit, ipsa esse ab ipsam? Deleniti.",
    detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+       rating:4.5,
+   reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 5,
@@ -66,6 +138,21 @@ export const Products = [
     isNew:false,
     details:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus laboriosam harum. Nihil eos reprehenderit, ipsa esse ab ipsam? Deleniti.",
  detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+     rating:4.4,
+   reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 6,
@@ -77,6 +164,21 @@ export const Products = [
     isNew: true,
     details:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus laboriosam harum. Nihil eos reprehenderit, ipsa esse ab ipsam? Deleniti.",
     detailsImages: { details1: img1, details2: img2, details3: img3, details4: img4 },
+        rating:4.5,
+ reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
   {
     id: 7,
@@ -97,6 +199,20 @@ export const Products = [
     discountPercentage: 0,
     isNew: true,
     details:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusamus laboriosam harum. Nihil eos reprehenderit, ipsa esse ab ipsam? Deleniti.",
+ reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
    {
     id: 10,
@@ -117,6 +233,8 @@ export const Products = [
     discountPercentage: 0,
     isNew:true,
     details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
+        rating:4.8,
+
   },
   {
     id: 12,
@@ -126,6 +244,21 @@ export const Products = [
     price: 7000,
     discountPercentage: 50,
     isNew:false,
-    details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound."
+    details:"Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
+    rating:4.5,
+  reviews:[
+    {
+      id:1,
+      name:"Ahmed",
+      rating:5,
+      comment:"Great quality"
+    },
+    {
+      id:2,
+      name:"Sara",
+      rating:4,
+      comment:"Very comfortable"
+    }
+  ]
   },
 ];
