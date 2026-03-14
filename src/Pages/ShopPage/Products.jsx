@@ -1,26 +1,37 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
+import { useCart } from "../../Context/CartContext";
 
-export default function ShopProducts({products =[], view , showCount }) {
+export default function ShopProducts({ products = [], view, showCount }) {
   const ProductsPerPage = showCount;
   const [currentPage, setCurrentPage] = useState(1);
-  
-  useEffect(()=>{
-       setCurrentPage(1);
-  },[products , showCount])
+  const { addToCart } = useCart();
+  const [addedId, setAddedId] = useState(null);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [products.length, showCount]);
 
   const startIndex = (currentPage - 1) * ProductsPerPage;
   const endIndex = startIndex + ProductsPerPage;
   const paginationProducts = products.slice(startIndex, endIndex);
   const totalPages = Math.ceil(products.length / ProductsPerPage);
+  const handleAddBtn = (product) => {
+    console.log("added");
+    addToCart(product);
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
 
   return (
     <section className="px-4">
-      <div className= {`py-6 px-10 gap-6 ${
+      <div
+        className={`py-6 px-10 gap-6 ${
           view === "list"
             ? "flex flex-col"
             : "grid sm:grid-cols-2 lg:grid-cols-4"
-        }`}>
+        }`}
+      >
         {paginationProducts.map((product) => {
           const finalPrice =
             product.discountPercentage > 0
@@ -34,7 +45,6 @@ export default function ShopProducts({products =[], view , showCount }) {
               className={`group bg-white rounded-2xl shadow-md overflow-hidden 
                 transform hover:scale-105 hover:shadow-xl transition duration-300 relative
                 ${view === "list" ? "flex flex-row" : ""}`}
-              
             >
               {/* Discount Badge */}
               {product.discountPercentage > 0 && (
@@ -64,9 +74,11 @@ export default function ShopProducts({products =[], view , showCount }) {
       opacity-0 group-hover:opacity-100 transition duration-300"
                 >
                   {/* Add to cart */}
-                  <button 
-                  className="bg-white text-black px-4 py-2 font-semibold mb-3 hover:bg-gray-200 cursor-pointer rounded-xl">
-                    Add to cart
+                  <button
+                    onClick={()=>handleAddBtn(product)}
+                    className="bg-white text-black px-4 py-2 font-semibold mb-3 hover:bg-gray-200 cursor-pointer rounded-xl"
+                  >
+                    {addedId === product.id ? "Added ✓" : "Add To Cart"}
                   </button>
 
                   {/* actions */}
@@ -75,10 +87,9 @@ export default function ShopProducts({products =[], view , showCount }) {
                       Compare
                     </button>
                     <Link to={`/ProductDetails/${product.id}`}>
-                    <button 
-                     className="hover:underline cursor-pointer">
-                      Details
-                    </button>
+                      <button className="hover:underline cursor-pointer">
+                        Details
+                      </button>
                     </Link>
                     {/* <button className="hover:underline cursor-pointer">
                       Like

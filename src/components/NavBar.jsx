@@ -21,13 +21,13 @@ export default function NavBar() {
 
   const {cartCount} = useCart();
   const [searchOpen , setSearchOpen] = useState(false);
-    const {user} = useUser();
+  const {user} = useUser();
   const [cartOpen , setCartOpen] = useState(false);
-
+console.log(cartCount)
 
   return (
     <>
-    <nav className="bg-[#FFFFFF] px-4">
+    <nav className="bg-[#FFFFFF] px-4 ">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center">
           {/* Left - Logo */}
@@ -102,9 +102,9 @@ export default function NavBar() {
             </button>
             <button onClick={()=>setCartOpen(true)}
             aria-label="Shopping Cart" className="relative cursor-pointer">
-              <ShoppingCart />
+              <ShoppingCart className="w-6 h-6" />
               {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                  <span className="absolute z-10 -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
                     {cartCount}
                   </span>
                 )}

@@ -1,7 +1,7 @@
 import ShopFilter from "./ShopFilter";
 import ShopHero from "./ShopHero";
 import ShopProducts from "./Products";
-import { useState } from "react";
+import { useState , useMemo} from "react";
 import { Products } from "../../Products";
 
 export default function ShopPage() {
@@ -9,18 +9,15 @@ export default function ShopPage() {
   const [showCount, setShowCount] = useState(4);
   const [view, setView] = useState("grid");
 
-
-  const filteredProducts = [...Products].sort((a, b) => {
-    if (sortBy === "priceLow") {
-    return a.price - b.price;
-  }
-
-  if (sortBy === "priceHigh") {
-    return b.price - a.price;
-  }
-    if (sortBy === "name") return a.name.localeCompare(b.name);
-    return 0;                  
-  });
+ 
+    const filteredProducts = useMemo(() => {
+    return [...Products].sort((a, b) => {
+      if (sortBy === "priceLow") return a.price - b.price;
+      if (sortBy === "priceHigh") return b.price - a.price;
+      if (sortBy === "name") return a.name.localeCompare(b.name);
+      return 0;
+    });
+  }, [sortBy]);
 
   return (
     <>

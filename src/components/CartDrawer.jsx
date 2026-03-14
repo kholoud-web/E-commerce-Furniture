@@ -1,11 +1,26 @@
-import { X } from "lucide-react";
+import { X , Plus ,Minus} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 
 export default function CartDrawer({ isOpen, onClose }) {
-  const { cart, removeFromCart } = useCart();
+  const { cart, decreaseCart ,addToCart , removeFromCart, totalPrice} = useCart();
 
   if (!isOpen) return null;
+  
+  //   const handleDecrease = (product) => {
+  //   if (product.quantity === 1) {
+  //     removeFromCart(product.id);
+  //   } else {
+  //     // reduce quantity by 1
+  //     addToCart({ ...product, quantity: -1 });
+  //   }
+  // };
+ 
+
+  // const handleIncrease = (product) => {
+  //   addToCart(product);
+  // };
+
 
   return (
     <div
@@ -14,14 +29,14 @@ export default function CartDrawer({ isOpen, onClose }) {
     >
       {/* Drawer */}
       <div
-        className={`bg-white w-full max-w-md h-full shadow-lg p-6 flex flex-col
-transition-transform duration-300
+        className={`bg-white w-full max-w-md max-h-9/12 shadow-lg p-6 flex flex-col
+transition-transform duration-300 rounded-xl
 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3">
-          <h2 className="text-lg font-semibold">Shopping Cart</h2>
+          <h2 className="text-lg font-bold">Shopping Cart</h2>
           <button className="cursor-pointer"
            onClick={onClose}>
             <X />
@@ -34,21 +49,38 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             <p className="text-gray-500">Your cart is empty</p>
           )}
 
-          {cart.map((item) => (
-            <div key={item.id} className="flex gap-4 items-center">
+          {cart.map((product) => (
+            <div key={product.id} className="flex gap-4 items-center">
               <img
-                src={item.image}
-                alt={item.title}
+                src={product.image}
+                alt={product.name}
                 className="w-16 h-16 object-cover rounded"
               />
 
               <div className="flex-1">
-                <p className="text-sm font-medium">{item.title}</p>
-                <p className="text-sm text-gray-500">${item.price}</p>
+                <p className="text-sm font-medium">{product.name}</p>
+                <p className="text-sm text-gray-500">${product.price}</p>
               </div>
+              
+                {/* Quantity Controls */}
+                <div className="flex items-center gap-2 mt-1">
+                  <button
+                    onClick={() => decreaseCart(product.id)}
+                    className="border px-2 py-1 rounded hover:bg-gray-100"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="text-sm font-medium">{product.quantity}</span>
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="border px-2 py-1 rounded hover:bg-gray-100"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
 
               <button
-                onClick={() => removeFromCart(item.id)}
+                onClick={() => removeFromCart(product.id)}
                 className="text-red-500 text-sm"
               >
                 Remove
@@ -56,16 +88,37 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             </div>
           ))}
         </div>
-
+       
+      {/* subtotal */}
+      <div className="flex items-center justify-between px-4 border-b pb-3 mb-4">
+        <p>Subtotal</p>
+        <p>{totalPrice}</p>
+      </div>
         {/* Footer */}
         {cart.length > 0 && (
+          <div className="flex items-center justify-around">
           <Link
             to="/cart"
             onClick={onClose}
-            className="mt-4 bg-black text-white text-center py-3 rounded-md"
+            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
           >
             View Cart
           </Link>
+             <Link
+            to="/checkout"
+            onClick={onClose}
+            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
+          >
+            Checkout
+          </Link>
+             <Link
+            to="/compare"
+            onClick={onClose}
+            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
+          >
+            Comparison
+          </Link>
+          </div>
         )}
       </div>
     </div>
