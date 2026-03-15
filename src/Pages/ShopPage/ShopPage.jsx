@@ -1,8 +1,8 @@
 import ShopFilter from "./ShopFilter";
-import ShopHero from "./ShopHero";
 import ShopProducts from "./Products";
 import { useState , useMemo} from "react";
 import { Products } from "../../Products";
+import Hero from "../../components/Hero";
 
 export default function ShopPage() {
   const [sortBy, setSortBy] = useState("default");
@@ -21,7 +21,7 @@ export default function ShopPage() {
 
   return (
     <>
-      <ShopHero />
+      <Hero title="Shop"  currentPage="Shop"/>
       <ShopFilter
         sortBy={sortBy}
         setSortBy={setSortBy}

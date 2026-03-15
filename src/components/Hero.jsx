@@ -1,16 +1,16 @@
 import hero from "/images/shopPge/Rectangle 1.svg";
 import { Link } from "react-router";
 
-export default function ShopHero() {
+export default function Hero({title , currentPage}) {
   return (
     <section
       className=" bg-cover bg-center py-40 "
       style={{ backgroundImage: `url(${hero})` }}
     >
       <div className="flex items-center justify-center flex-col">
-        <h2 className="font-medium text-[#000000] text-4xl">Shop</h2>
+        <h2 className="font-medium text-[#000000] text-4xl">{title}</h2>
         <p className="text-[#000000] font-light py-3">
-          <Link to="/">Home</Link> &gt; Shop
+          <Link to="/" className="font-bold">Home</Link> &gt; {currentPage}
         </p>
       </div>
     </section>

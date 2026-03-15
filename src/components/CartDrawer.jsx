@@ -1,26 +1,12 @@
-import { X , Plus ,Minus} from "lucide-react";
+import { X, Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 
 export default function CartDrawer({ isOpen, onClose }) {
-  const { cart, decreaseCart ,addToCart , removeFromCart, totalPrice} = useCart();
+  const { cart, decreaseCart, addToCart, removeFromCart, totalPrice } =
+    useCart();
 
   if (!isOpen) return null;
-  
-  //   const handleDecrease = (product) => {
-  //   if (product.quantity === 1) {
-  //     removeFromCart(product.id);
-  //   } else {
-  //     // reduce quantity by 1
-  //     addToCart({ ...product, quantity: -1 });
-  //   }
-  // };
- 
-
-  // const handleIncrease = (product) => {
-  //   addToCart(product);
-  // };
-
 
   return (
     <div
@@ -37,8 +23,7 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-3">
           <h2 className="text-lg font-bold">Shopping Cart</h2>
-          <button className="cursor-pointer"
-           onClick={onClose}>
+          <button className="cursor-pointer" onClick={onClose}>
             <X />
           </button>
         </div>
@@ -61,23 +46,23 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
                 <p className="text-sm font-medium">{product.name}</p>
                 <p className="text-sm text-gray-500">${product.price}</p>
               </div>
-              
-                {/* Quantity Controls */}
-                <div className="flex items-center gap-2 mt-1">
-                  <button
-                    onClick={() => decreaseCart(product.id)}
-                    className="border px-2 py-1 rounded hover:bg-gray-100"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="text-sm font-medium">{product.quantity}</span>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="border px-2 py-1 rounded hover:bg-gray-100"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
-                </div>
+
+              {/* Quantity Controls */}
+              <div className="flex items-center gap-2 mt-1">
+                <button
+                  onClick={() => decreaseCart(product.id)}
+                  className="border px-2 py-1 rounded hover:bg-gray-100"
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+                <span className="text-sm font-medium">{product.quantity}</span>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="border px-2 py-1 rounded hover:bg-gray-100"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
 
               <button
                 onClick={() => removeFromCart(product.id)}
@@ -88,36 +73,36 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             </div>
           ))}
         </div>
-       
-      {/* subtotal */}
-      <div className="flex items-center justify-between px-4 border-b pb-3 mb-4">
-        <p>Subtotal</p>
-        <p>{totalPrice}</p>
-      </div>
+
+        {/* subtotal */}
+        <div className="flex items-center justify-between px-4 border-b pb-3 mb-4">
+          <p>Subtotal</p>
+          <p>{totalPrice}</p>
+        </div>
         {/* Footer */}
         {cart.length > 0 && (
           <div className="flex items-center justify-around">
-          <Link
-            to="/cart"
-            onClick={onClose}
-            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
-          >
-            View Cart
-          </Link>
-             <Link
-            to="/checkout"
-            onClick={onClose}
-            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
-          >
-            Checkout
-          </Link>
-             <Link
-            to="/compare"
-            onClick={onClose}
-            className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
-          >
-            Comparison
-          </Link>
+            <Link
+              to="/cart"
+              onClick={onClose}
+              className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
+            >
+              View Cart
+            </Link>
+            <Link
+              to="/checkout"
+              onClick={onClose}
+              className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
+            >
+              Checkout
+            </Link>
+            <Link
+              to="/compare"
+              onClick={onClose}
+              className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
+            >
+              Comparison
+            </Link>
           </div>
         )}
       </div>
