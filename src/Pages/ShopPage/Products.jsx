@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useCart } from "../../Context/CartContext";
+import { useCompare } from "../../Context/CompareContext";
+
 
 export default function ShopProducts({ products = [], view, showCount }) {
   const ProductsPerPage = showCount;
   const [currentPage, setCurrentPage] = useState(1);
   const { addToCart } = useCart();
   const [addedId, setAddedId] = useState(null);
+  
+  const {addToCompare} = useCompare();
 
   useEffect(() => {
     setCurrentPage(1);
@@ -66,6 +70,7 @@ export default function ShopProducts({ products = [], view, showCount }) {
                   className="w-full h-48 object-cover"
                   src={product.image}
                   alt={product.name}
+                  loading="lazy"
                 />
 
                 {/* Overlay */}
@@ -83,9 +88,12 @@ export default function ShopProducts({ products = [], view, showCount }) {
 
                   {/* actions */}
                   <div className="flex gap-4 text-white text-sm">
-                    <button className="hover:underline cursor-pointer">
+                    <Link to="/comparisonPage">
+                    <button  onClick={()=> addToCompare(product)}
+                    className="hover:underline cursor-pointer">
                       Compare
                     </button>
+                    </Link>
                     <Link to={`/ProductDetails/${product.id}`}>
                       <button className="hover:underline cursor-pointer">
                         Details

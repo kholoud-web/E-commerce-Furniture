@@ -15,8 +15,8 @@ export default function NavBar() {
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Shop", path: "/shop" },
-    { name: "About", path: "/contact" },
-    { name: "Contact", path: "/contact" },
+    { name: "About", path: "/about" },
+    { name: "ContactUs", path: "/contactUs" },
   ];
 
   const {cartCount} = useCart();

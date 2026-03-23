@@ -10,6 +10,8 @@ import Checkout from "./Pages/CheckoutPage/Checkout.jsx";
 import OrderSuccess from "./Pages/CheckoutPage/OrderSuccess.jsx";
 import Features from "./components/Features.jsx";
 import ComparisonPage from "./Pages/Comparison/ComparisonPage.jsx";
+import ContactUsPage from "./Pages/ContactUs/ContactUsPage.jsx";
+
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orderSuccess" element={<OrderSuccess />} />
-        <Route path="/comparison" element={<ComparisonPage />} />
+        <Route path="/comparisonPage" element={<ComparisonPage />} />
+        <Route path="/contactUs" element={<ContactUsPage/>}/>
       </Routes>
       <Features />
       <Footer />
