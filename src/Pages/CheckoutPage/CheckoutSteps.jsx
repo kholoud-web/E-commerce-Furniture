@@ -4,11 +4,17 @@ import { checkoutSchema } from "./checkourSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { json } from "zod";
+import { useUser } from "../../Context/UserContext";
+import { Navigate } from "react-router-dom";
 
 export default function CheckoutSteps() {
   const navigate = useNavigate();
   const { cart, totalPrice, clearCart } = useCart();
-
+  const {user} = useUser();
+  
+  if(!user) {
+    return <Navigate to="/login"/>
+  }
   const {
     register,
     handleSubmit,

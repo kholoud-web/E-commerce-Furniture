@@ -11,7 +11,12 @@ import OrderSuccess from "./Pages/CheckoutPage/OrderSuccess.jsx";
 import Features from "./components/Features.jsx";
 import ComparisonPage from "./Pages/Comparison/ComparisonPage.jsx";
 import ContactUsPage from "./Pages/ContactUs/ContactUsPage.jsx";
-
+import AboutPage from "./Pages/AboutPage/AboutPage.jsx";
+import Login from "./Pages/LoginPage/Login.jsx";
+import Profile from "./Pages/UserProfile/Profile.jsx";
+import Register from "./Pages/RegisterPage/Register.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AuthLayout from "./components/AuthLayout.jsx";
 
 function App() {
   return (
@@ -22,10 +27,21 @@ function App() {
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/productDetails/:id" element={<SingleProductPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={
+         <ProtectedRoute>
+           <Checkout />
+          </ProtectedRoute>
+          } />
         <Route path="/orderSuccess" element={<OrderSuccess />} />
         <Route path="/comparisonPage" element={<ComparisonPage />} />
         <Route path="/contactUs" element={<ContactUsPage/>}/>
+        <Route path="/about" element={<AboutPage/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route element={<AuthLayout/>}>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+
+        </Route>
       </Routes>
       <Features />
       <Footer />

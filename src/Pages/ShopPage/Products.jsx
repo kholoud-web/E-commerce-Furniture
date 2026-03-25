@@ -3,14 +3,13 @@ import { Link } from "react-router";
 import { useCart } from "../../Context/CartContext";
 import { useCompare } from "../../Context/CompareContext";
 
-
 export default function ShopProducts({ products = [], view, showCount }) {
   const ProductsPerPage = showCount;
   const [currentPage, setCurrentPage] = useState(1);
   const { addToCart } = useCart();
   const [addedId, setAddedId] = useState(null);
-  
-  const {addToCompare} = useCompare();
+
+  const { addToCompare } = useCompare();
 
   useEffect(() => {
     setCurrentPage(1);
@@ -80,7 +79,7 @@ export default function ShopProducts({ products = [], view, showCount }) {
                 >
                   {/* Add to cart */}
                   <button
-                    onClick={()=>handleAddBtn(product)}
+                    onClick={() => handleAddBtn(product)}
                     className="bg-white text-black px-4 py-2 font-semibold mb-3 hover:bg-gray-200 cursor-pointer rounded-xl"
                   >
                     {addedId === product.id ? "Added ✓" : "Add To Cart"}
@@ -89,10 +88,12 @@ export default function ShopProducts({ products = [], view, showCount }) {
                   {/* actions */}
                   <div className="flex gap-4 text-white text-sm">
                     <Link to="/comparisonPage">
-                    <button  onClick={()=> addToCompare(product)}
-                    className="hover:underline cursor-pointer">
-                      Compare
-                    </button>
+                      <button
+                        onClick={() => addToCompare(product)}
+                        className="hover:underline cursor-pointer"
+                      >
+                        Compare
+                      </button>
                     </Link>
                     <Link to={`/ProductDetails/${product.id}`}>
                       <button className="hover:underline cursor-pointer">

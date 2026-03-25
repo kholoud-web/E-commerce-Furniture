@@ -1,8 +1,6 @@
 import { useState } from "react";
 import logo from "../../public/images/Meubel House_Logos-05.svg";
-import { Import, User } from "lucide-react";
-import { Search } from "lucide-react";
-import { ShoppingCart } from "lucide-react";
+import { Import, User , ShoppingCart , Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import {useCart} from "../Context/CartContext";
 import {useUser} from "../Context/UserContext";
@@ -23,7 +21,7 @@ export default function NavBar() {
   const [searchOpen , setSearchOpen] = useState(false);
   const {user} = useUser();
   const [cartOpen , setCartOpen] = useState(false);
-console.log(cartCount)
+// console.log(cartCount)
 
   return (
     <>
@@ -93,6 +91,7 @@ console.log(cartCount)
 
             <button  aria-label="User" className="cursor-pointer">
               <Link to={user ? "/profile" : "/login"}>
+              {/* <Link to="/login"> */}
               <User />
               </Link>
             </button>
