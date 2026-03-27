@@ -1,7 +1,10 @@
 import bg from "../../../public/images/home/scandinavian-interior-mockup-wall-decal-background 1.svg"
 import MainButton from "../../components/MainButton"
+import { useNavigate } from "react-router-dom"
 
 export default function Home(){
+  const navigate = useNavigate();
+
     return(
         <section  className="h-screen bg-cover bg-center py-40 "
       style={{ backgroundImage: `url(${bg})` }} >
@@ -13,7 +16,7 @@ export default function Home(){
                 <h1 className="text-[#B88E2F] font-bold text-4xl">Discover Our <br/> New Collection</h1>
                 <p className="py-4 text-[#333333] font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut <br/> elit tellus, luctus nec ullamcorper mattis.</p>
                  <div>
-                   <MainButton >Click Me</MainButton>
+                   <MainButton onClick={()=>navigate("/shop")} >Click Me</MainButton>
                  </div>
                </div>
             </div>

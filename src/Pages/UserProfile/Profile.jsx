@@ -2,7 +2,6 @@ import { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
 import Orders from "./OrderSection";
 import Settings from "./Settings";
-import Wishlist from "./Wishlist";
 import Addresses from "./Addresses";
 import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router";
@@ -11,6 +10,7 @@ export default function Profile() {
   const {user,logout} = useUser();
   const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
+   
 
   const handleLogoutBtn =()=>{
      logout();
@@ -24,7 +24,7 @@ export default function Profile() {
       <aside className="w-64 bg-white shadow-md p-6">
         <h2 className="text-xl font-bold mb-8">My Account</h2>
 
-        {["profile", "orders", "wishlist", "addresses", "settings"].map((tab) => (
+        {["profile", "orders", "addresses", "settings"].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -37,14 +37,13 @@ export default function Profile() {
         ))}
 
         <button onClick={handleLogoutBtn}
-        className="bg-black text-white py-2  px-6 rounded-xl mt-4 font-medium cursor-pointer">LogOut</button>
-      </aside>
+           className="bg-black text-white py-2  px-6 rounded-xl mt-4 font-medium cursor-pointer">LogOut</button>
+        </aside>
 
       {/* Content */}
       <main className="flex-1 p-8">
-        {activeTab === "profile" && <ProfileInfo user={user} />}
+        {activeTab === "profile" && <ProfileInfo  />}
         {activeTab === "orders" && <Orders />}
-        {activeTab === "wishlist" && <Wishlist />}
         {activeTab === "addresses" && <Addresses />}
         {activeTab === "settings" && <Settings />}
       </main>

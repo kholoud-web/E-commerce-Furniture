@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useCart } from "../../Context/CartContext";
 import { useCompare } from "../../Context/CompareContext";
+import { useNavigate } from "react-router";
 
 export default function ShopProducts({ products = [], view, showCount }) {
   const ProductsPerPage = showCount;
   const [currentPage, setCurrentPage] = useState(1);
   const { addToCart } = useCart();
   const [addedId, setAddedId] = useState(null);
+  const [compareId , setCompareId] = useState(null);
 
-  const { addToCompare } = useCompare();
+  const { addToCompare , isInCompare , compareList } = useCompare();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentPage(1);
@@ -19,6 +22,7 @@ export default function ShopProducts({ products = [], view, showCount }) {
   const endIndex = startIndex + ProductsPerPage;
   const paginationProducts = products.slice(startIndex, endIndex);
   const totalPages = Math.ceil(products.length / ProductsPerPage);
+  // handlers
   const handleAddBtn = (product) => {
     console.log("added");
     addToCart(product);
@@ -26,6 +30,23 @@ export default function ShopProducts({ products = [], view, showCount }) {
     setTimeout(() => setAddedId(null), 1500);
   };
 
+const handleCompare=(product)=>{
+    if (isInCompare(product.id)) {
+      navigate("/comparisonPage"); // already added, just go there
+      return;
+    }
+    addToCompare(product);
+}
+
+useEffect(() => {
+  if (compareId && compareList.length > 0) {
+    const timer = setTimeout(() => {
+      setCompareId(null);
+      navigate("/comparisonPage");
+    }, 600);
+    return () => clearTimeout(timer);
+  }
+}, [compareList]); // fi
   return (
     <section className="px-4">
       <div
@@ -87,14 +108,12 @@ export default function ShopProducts({ products = [], view, showCount }) {
 
                   {/* actions */}
                   <div className="flex gap-4 text-white text-sm">
-                    <Link to="/comparisonPage">
                       <button
-                        onClick={() => addToCompare(product)}
+                        onClick={handleCompare}
                         className="hover:underline cursor-pointer"
                       >
                         Compare
                       </button>
-                    </Link>
                     <Link to={`/ProductDetails/${product.id}`}>
                       <button className="hover:underline cursor-pointer">
                         Details

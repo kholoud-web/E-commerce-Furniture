@@ -18,7 +18,7 @@ export default function Login() {
 
   const onSubmit = (data) => {
     const fakeUser = {
-      name: "Kholoud",
+      name: data.name,
       email: data.email,
     };
     login(fakeUser);
@@ -31,6 +31,17 @@ export default function Login() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Email */}
+           <div>
+          <input
+            type="name"
+            placeholder="Name"
+            {...register("name")}
+            className="w-full border p-2 rounded"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          )}
+        </div>
         <div>
           <input
             type="email"

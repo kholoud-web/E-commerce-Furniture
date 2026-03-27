@@ -14,17 +14,41 @@ export  function UserProvider({ children }) {
 
   // login
   const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData))
+    const fullUser={
+      ...userData,
+      cart:[],
+      orders:[],
+    }
+    setUser(fullUser);
+    localStorage.setItem("user", JSON.stringify(fullUser))
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
   };
+
+  const addToCart = (product)=>{
+    const updatedUser = {
+      ...user,
+      cart :[...user.cart , product]
+    }
+    setUser(updatedUser);
+    localStorage.setItem("user" ,JSON.stringify(updatedUser));
+  }
+
+  const placeOrder =()=>{
+      const updatedUser={
+        ...user,
+        orders:[...user.orders, user.cart],
+          cart:[],
+      }
+      setUser(updatedUser);
+      localStorage.setItem("user" , JSON.stringify(updatedUser))
+  }
   
   return (
-    <userContext.Provider value={{ user, login, logout }}>
+    <userContext.Provider value={{ user, login, logout , addToCart , placeOrder}}>
       {children}
     </userContext.Provider>
   );

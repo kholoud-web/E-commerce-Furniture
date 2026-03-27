@@ -1,26 +1,34 @@
-export default function Orders() {
-  const orders = [
-    { id: "#1234", status: "Delivered", total: "$120" },
-    { id: "#1235", status: "Processing", total: "$80" },
-  ];
+import {useUser} from "../../Context/UserContext";
 
+
+export default function Orders() {
+  
+  const {user} = useUser();
   return (
     <div>
       <h2 className="text-xl font-semibold mb-6">My Orders</h2>
 
-      {orders.map((order) => (
-        <div
-          key={order.id}
-          className="bg-white p-4 rounded-xl shadow mb-4 flex justify-between"
-        >
-          <div>
-            <p className="font-semibold">{order.id}</p>
-            <p className="text-gray-500">{order.status}</p>
-          </div>
+      {user?.orders?.length === 0 ? (
+        <p>No orders yet</p>
+      ) : (
+        user.orders.map((order, index) => (
+          <>
+          <div key={index} className="mb-4 border p-4 rounded">
+            <p className="font-semibold mb-2">Order #{index + 1}</p>
 
-          <p className="font-bold">{order.total}</p>
-        </div>
-      ))}
+            {order.map((item) => (
+              <div key={item.id} className="flex justify-between">
+                <p>{item.name}</p>
+                <p>{item.price} EGP</p>
+              </div>
+            ))}
+          </div>
+             <p className="text-right font-bold mt-2">
+              Total: {order.reduce((sum, item) => sum + item.price, 0)} EGP
+            </p>
+            </>
+        ))
+      )}
     </div>
   );
 }

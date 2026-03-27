@@ -7,7 +7,10 @@ export function CompareProvider({children}){
 
   const addToCompare = (product)=>{
     setCompareList((prev)=>{
-        if(prev.find((p)=>p.id === product.id)) return prev;
+        if(prev.find((p)=>p.id === product.id)){
+         alert("Product is already in compare list.");
+            return prev;
+        }
 
         if(prev.length >= 2){
             alert("You can only compare 2 products");
@@ -23,9 +26,10 @@ const removeFromCompare = (id)=>{
 }
 
 const clearCompare =()=> setCompareList([]);
+const isInCompare = (id) => compareList.some((p) => p.id === id); 
 
 return (
-    <compareContext.Provider value={{compareContext , addToCompare , removeFromCompare , clearCompare}}>
+    <compareContext.Provider value={{compareContext , addToCompare , removeFromCompare , clearCompare , isInCompare}}>
 
    {children}
 

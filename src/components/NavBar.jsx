@@ -26,7 +26,7 @@ export default function NavBar() {
   return (
     <>
     <nav className="bg-[#FFFFFF] px-4 ">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-7xl lg:px-4 md:px-2">
         <div className="flex h-16 items-center">
           {/* Left - Logo */}
           <div className="flex flex-1 justify-start">
@@ -35,7 +35,7 @@ export default function NavBar() {
           </div>
 
           {/* Center - Desktop Menu */}
-          <div className="hidden sm:flex flex-1 justify-center space-x-8">
+          <div className="hidden sm:flex flex-1 justify-center lg:space-x-8  md:space-x-4">
             {menuItems.map((item) => (
               <Link
                 key={item.name}
