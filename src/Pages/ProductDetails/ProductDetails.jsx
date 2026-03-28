@@ -1,15 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StarRating from "../../components/StarRating";
+import { useCart } from "../../Context/CartContext";
+import { useCompare } from "../../Context/CompareContext";
+import { useNavigate } from "react-router";
 
 export default function ProductDetails({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState(product.image);
   const [selectedSize, setSize] = useState(null);
   const [selectedColor, setColor] = useState(null);
+  const [addedId, setAddedId] = useState(null);
+  const [compareId, setCompareId] = useState(null);
+  const navigate = useNavigate();
 
+  const { addToCart } = useCart();
+  const { isInCompare, addToCompare, compareList } = useCompare();
   if (!product) {
     return <p className="text-center py-20">product not found</p>;
   }
+
+  const handleAddBtn = (product) => {
+    addToCart(product);
+    setAddedId(product.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
+
+  const handleCompare = (product) => {
+    if (isInCompare(product.id)) {
+      navigate("/comparisonPage"); // already added, just go there
+    }
+    addToCompare(product);
+  };
+
+  useEffect(() => {
+    if (compareId && compareList.length > 0) {
+      const timer = setTimeout(() => {
+        setCompareId(null);
+        navigate("/comparisonPage");
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [compareList]);
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-10 grid lg:grid-cols-2 gap-12">
@@ -95,7 +126,7 @@ export default function ProductDetails({ product }) {
             ))}
           </div>
         </div>
-      
+
         {/* cart buttons */}
         <div className="flex items-center gap-4 mb-10">
           <div className="flex items-center border rounded-lg">
@@ -114,11 +145,19 @@ export default function ProductDetails({ product }) {
             </button>
           </div>
 
-          <button className="border px-6 py-2 rounded-lg hover:bg-[#B88E2F] hover:text-white transition cursor-pointer">
-            Add To Cart
+          <button
+            onClick={() => handleAddBtn(product)}
+            className="border px-6 py-2 rounded-lg hover:bg-[#B88E2F] hover:text-white transition cursor-pointer"
+          >
+            {addedId === product.id ? "Added ✓" : "Add To Cart"}
           </button>
 
-          <button className="border px-6 py-2 rounded-lg cursor-pointer hover:bg-[#B88E2F] hover:text-white transition">+ Compare</button>
+          <button
+            onClick={() => handleCompare(product)}
+            className="border px-6 py-2 rounded-lg cursor-pointer hover:bg-[#B88E2F] hover:text-white transition"
+          >
+            + Compare
+          </button>
         </div>
 
         {/* product info */}

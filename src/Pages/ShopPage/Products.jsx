@@ -46,7 +46,7 @@ useEffect(() => {
     }, 600);
     return () => clearTimeout(timer);
   }
-}, [compareList]); // fi
+}, [compareList]);
   return (
     <section className="px-4">
       <div
@@ -109,7 +109,7 @@ useEffect(() => {
                   {/* actions */}
                   <div className="flex gap-4 text-white text-sm">
                       <button
-                        onClick={handleCompare}
+                        onClick={()=>handleCompare(product)}
                         className="hover:underline cursor-pointer"
                       >
                         Compare

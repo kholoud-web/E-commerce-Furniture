@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <>
-    <nav className="bg-[#FFFFFF] px-4 ">
+    <nav className="bg-[#FFFFFF] px-4 sticky top-0">
       <div className="mx-auto max-w-7xl lg:px-4 md:px-2">
         <div className="flex h-16 items-center">
           {/* Left - Logo */}

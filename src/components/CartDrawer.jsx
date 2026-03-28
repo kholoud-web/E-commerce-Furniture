@@ -97,7 +97,7 @@ ${isOpen ? "translate-x-0" : "translate-x-full"}`}
               Checkout
             </Link>
             <Link
-              to="/compare"
+              to="/comparisonPage"
               onClick={onClose}
               className="mt-4  text-black text-center py-1 px-4 rounded-2xl border"
             >

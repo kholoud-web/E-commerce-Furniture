@@ -13,18 +13,23 @@ export  function UserProvider({ children }) {
   },[]);
 
   // login
-  const login = (userData) => {
-    const fullUser={
-      ...userData,
-      cart:[],
-      orders:[],
-    }
-    setUser(fullUser);
-    localStorage.setItem("user", JSON.stringify(fullUser))
-  };
+ const login = (email,password) => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+ const foundUser = users.find(
+  (u) => u.email === email && u.password === password
+);
+  if (foundUser) {
+    setUser(foundUser);
+    localStorage.setItem("currentUser", JSON.stringify(foundUser));
+  } else {
+    alert("User not found");
+  }
+};
+ 
 
   const logout = () => {
-    setUser(null);
+  setUser(null);
     localStorage.removeItem("user");
   };
 
@@ -37,21 +42,36 @@ export  function UserProvider({ children }) {
     localStorage.setItem("user" ,JSON.stringify(updatedUser));
   }
 
-  const placeOrder =()=>{
-      const updatedUser={
-        ...user,
-        orders:[...user.orders, user.cart],
-          cart:[],
-      }
-      setUser(updatedUser);
-      localStorage.setItem("user" , JSON.stringify(updatedUser))
-  }
+ const placeOrder = () => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const updatedUsers = users.map((u) => {
+    if (u.email === user.email) {
+      return {
+        ...u,
+        orders: [...u.orders, u.cart],
+        cart: [],
+      };
+    }
+    return u;
+  });
+
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+  const updatedUser = updatedUsers.find(
+    (u) => u.email === user.email
+  );
+
+  setUser(updatedUser);
+  localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+};
   
   return (
     <userContext.Provider value={{ user, login, logout , addToCart , placeOrder}}>
       {children}
     </userContext.Provider>
   );
-}
+   };
+
 
 export const useUser = () => useContext(userContext);

@@ -17,13 +17,17 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-    const fakeUser = {
-      name: data.name,
-      email: data.email,
-    };
-    login(fakeUser);
+   login(data.email , data.password)   
     navigate("/");
-  };
+  }
+  //   function newFunction() {
+  //     const fakeUser = {
+  //       name: data.name,
+  //       email: data.email,
+  //     };
+  //     login(fakeUser);
+  //   }
+  // };
 
   return (
     <div className="max-w-md mx-auto my-20 p-6 border rounded-2xl shadow">
