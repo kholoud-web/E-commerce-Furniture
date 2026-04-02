@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../Context/CartContext";
 
 export default function CartDrawer({ isOpen, onClose }) {
-  const { cart, decreaseCart, addToCart, removeFromCart, totalPrice } =
+  const {cart, decreaseCart, addToCart, removeFromCart, totalPrice } =
     useCart();
 
   if (!isOpen) return null;

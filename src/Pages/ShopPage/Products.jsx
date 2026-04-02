@@ -25,6 +25,7 @@ export default function ShopProducts({ products = [], view, showCount }) {
   // handlers
   const handleAddBtn = (product) => {
     console.log("added");
+    
     addToCart(product);
     setAddedId(product.id);
     setTimeout(() => setAddedId(null), 1500);

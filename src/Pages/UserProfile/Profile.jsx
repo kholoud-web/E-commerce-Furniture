@@ -13,6 +13,7 @@ export default function Profile() {
    
 
   const handleLogoutBtn =()=>{
+    
      logout();
      navigate ("/");
   }

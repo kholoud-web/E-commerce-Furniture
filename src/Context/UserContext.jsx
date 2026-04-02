@@ -1,77 +1,95 @@
-import { useState, useContext, createContext , useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-const userContext = createContext();
+const UserContext = createContext();
 
-export  function UserProvider({ children }) {
+export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  useEffect(()=>{
-    const storedUser = localStorage.getItem("user");
-    if(storedUser) {
-      setUser(JSON.parse(storedUser));
+  useEffect(() => {
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
     }
-  },[]);
+  }, []);
 
-  // login
- const login = (email,password) => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const login = (email, password) => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const foundUser = users.find(
+      (u) => u.email === email && u.password === password,
+    );
 
- const foundUser = users.find(
-  (u) => u.email === email && u.password === password
-);
-  if (foundUser) {
-    setUser(foundUser);
-    localStorage.setItem("currentUser", JSON.stringify(foundUser));
-  } else {
-    alert("User not found");
-  }
-};
- 
+    if (foundUser) {
+      const fullUser = {
+        ...foundUser,
+        cart: foundUser.cart || [],
+        orders: foundUser.orders || [],
+      };
 
-  const logout = () => {
-  setUser(null);
-    localStorage.removeItem("user");
+      setUser(fullUser);
+      localStorage.setItem("currentUser", JSON.stringify(fullUser));
+      return true;
+    }
+
+    return false;
   };
 
-  const addToCart = (product)=>{
-    const updatedUser = {
-      ...user,
-      cart :[...user.cart , product]
-    }
-    setUser(updatedUser);
-    localStorage.setItem("user" ,JSON.stringify(updatedUser));
-  }
+  const registerUser = (data) => {
+    //     const existingUser = users.find((u) => u.email === data.email);
+    //     if (existingUser) {
+    //   alert("Email already exists");
+    //   return;
+    // }
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
- const placeOrder = () => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+    const newUser = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      cart: [],
+      orders: [],
+    };
 
-  const updatedUsers = users.map((u) => {
-    if (u.email === user.email) {
-      return {
-        ...u,
-        orders: [...u.orders, u.cart],
-        cart: [],
-      };
-    }
-    return u;
-  });
+    const updatedUsers = [...users, newUser];
 
-  localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    setUser(newUser);
+  };
 
-  const updatedUser = updatedUsers.find(
-    (u) => u.email === user.email
-  );
+  const updateUserCart = (newCart) => {
+    if (!user) return;
 
-  setUser(updatedUser);
-  localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-};
-  
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const updatedUsers = users.map((u) =>
+      u.email === user.email ? { ...u, cart: newCart } : u,
+    );
+
+    const updatedCurrentUser = updatedUsers.find((u) => u.email === user.email);
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    localStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser));
+    setUser(updatedCurrentUser);
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("currentUser");
+  };
+
   return (
-    <userContext.Provider value={{ user, login, logout , addToCart , placeOrder}}>
+    <UserContext.Provider
+      value={{
+        user,
+        login,
+        registerUser,
+        logout,
+        updateUserCart,
+      }}
+    >
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
-   };
+}
 
-
-export const useUser = () => useContext(userContext);
+export const useUser = () => useContext(UserContext);

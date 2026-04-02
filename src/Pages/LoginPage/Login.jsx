@@ -17,30 +17,28 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-   login(data.email , data.password)   
+    const success = login(data.email, data.password);
+  if (success) {
     navigate("/");
+  } else {
+    alert("User not found");
   }
-  //   function newFunction() {
-  //     const fakeUser = {
-  //       name: data.name,
-  //       email: data.email,
-  //     };
-  //     login(fakeUser);
-  //   }
-  // };
+  }
+
 
   return (
     <div className="max-w-md mx-auto my-20 p-6 border rounded-2xl shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Email */}
+        {/* name */}
            <div>
           <input
             type="name"
             placeholder="Name"
             {...register("name")}
             className="w-full border p-2 rounded"
+            
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -73,7 +71,7 @@ export default function Login() {
           )}
         </div>
 
-        <button className="w-full bg-black text-white py-2 rounded cursor-pointer">
+        <button type="submit" className="w-full bg-black text-white py-2 rounded cursor-pointer">
           Login
         </button>
       </form>

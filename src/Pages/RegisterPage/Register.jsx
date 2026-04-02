@@ -5,7 +5,7 @@ import { useUser } from "../../Context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Register() {
-  const { login } = useUser();
+  const { registerUser } = useUser();
   const navigate = useNavigate();
 
   const {
@@ -17,11 +17,7 @@ export default function Register() {
   });
 
   const onSubmit = (data) => {
-    const newUser = {
-      name: data.name,
-      email: data.email,
-    };
-    login(newUser);
+    registerUser(data)
     navigate("/");
   };
 
@@ -82,7 +78,7 @@ export default function Register() {
           )}
         </div>
 
-        <button className="w-full bg-black text-white py-2 rounded cursor-pointer">
+        <button  type="submit"   className="w-full bg-black text-white py-2 rounded cursor-pointer">
           Register
         </button>
       </form>
