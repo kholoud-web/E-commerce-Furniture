@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Hero({title , currentPage}) {
   return (
     <section
-      className=" bg-cover bg-center py-40 "
+      className=" bg-cover bg-center py-40  "
       style={{ backgroundImage: `url(${hero})` }}
     >
       <div className="flex items-center justify-center flex-col">

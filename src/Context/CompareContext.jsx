@@ -29,7 +29,7 @@ const clearCompare =()=> setCompareList([]);
 const isInCompare = (id) => compareList.some((p) => p.id === id); 
 
 return (
-    <compareContext.Provider value={{compareContext , addToCompare , removeFromCompare , clearCompare , isInCompare}}>
+    <compareContext.Provider value={{compareList , addToCompare , removeFromCompare , clearCompare , isInCompare}}>
 
    {children}
 

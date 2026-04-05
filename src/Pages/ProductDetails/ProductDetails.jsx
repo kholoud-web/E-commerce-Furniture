@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import StarRating from "../../components/StarRating";
 import { useCart } from "../../Context/CartContext";
 import { useCompare } from "../../Context/CompareContext";
@@ -10,11 +10,11 @@ export default function ProductDetails({ product }) {
   const [selectedSize, setSize] = useState(null);
   const [selectedColor, setColor] = useState(null);
   const [addedId, setAddedId] = useState(null);
-  const [compareId, setCompareId] = useState(null);
+  // const [compareId, setCompareId] = useState(null);
   const navigate = useNavigate();
 
   const { addToCart } = useCart();
-  const { isInCompare, addToCompare, compareList } = useCompare();
+  const { isInCompare, addToCompare } = useCompare();
   if (!product) {
     return <p className="text-center py-20">product not found</p>;
   }
@@ -26,21 +26,22 @@ export default function ProductDetails({ product }) {
   };
 
   const handleCompare = (product) => {
-    if (isInCompare(product.id)) {
-      navigate("/comparisonPage"); // already added, just go there
+   if (!isInCompare(product.id)){
+      addToCompare(product);
+
     }
-    addToCompare(product);
+    navigate("/comparisonPage");
   };
 
-  useEffect(() => {
-    if (compareId && compareList.length > 0) {
-      const timer = setTimeout(() => {
-        setCompareId(null);
-        navigate("/comparisonPage");
-      }, 600);
-      return () => clearTimeout(timer);
-    }
-  }, [compareList]);
+  // useEffect(() => {
+  //   if (compareId && compareList.length > 0) {
+  //     const timer = setTimeout(() => {
+  //       setCompareId(null);
+  //       navigate("/comparisonPage");
+  //     }, 600);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [compareList]);
 
   return (
     <section className="max-w-7xl mx-auto py-16 px-10 grid lg:grid-cols-2 gap-12">

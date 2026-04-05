@@ -5,6 +5,7 @@ import { Products } from "../../Products";
 import Hero from "../../components/Hero";
 
 export default function ShopPage() {
+  
   const [sortBy, setSortBy] = useState("default");
   const [showCount, setShowCount] = useState(4);
   const [view, setView] = useState("grid");

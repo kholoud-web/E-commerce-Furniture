@@ -9,9 +9,9 @@ export default function ShopProducts({ products = [], view, showCount }) {
   const [currentPage, setCurrentPage] = useState(1);
   const { addToCart } = useCart();
   const [addedId, setAddedId] = useState(null);
-  const [compareId , setCompareId] = useState(null);
+  // const [compareId , setCompareId] = useState(null);
 
-  const { addToCompare , isInCompare , compareList } = useCompare();
+  const { addToCompare , isInCompare  } = useCompare();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,22 +32,13 @@ export default function ShopProducts({ products = [], view, showCount }) {
   };
 
 const handleCompare=(product)=>{
-    if (isInCompare(product.id)) {
-      navigate("/comparisonPage"); // already added, just go there
-      return;
+    if (!isInCompare(product.id)){
+      addToCompare(product);
+
     }
-    addToCompare(product);
+    navigate("/comparisonPage");
 }
 
-useEffect(() => {
-  if (compareId && compareList.length > 0) {
-    const timer = setTimeout(() => {
-      setCompareId(null);
-      navigate("/comparisonPage");
-    }, 600);
-    return () => clearTimeout(timer);
-  }
-}, [compareList]);
   return (
     <section className="px-4">
       <div
