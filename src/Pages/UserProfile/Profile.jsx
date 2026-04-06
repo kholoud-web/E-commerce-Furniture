@@ -22,7 +22,7 @@ export default function Profile() {
     <div className="min-h-screen bg-gray-50 flex">
 
       {/* Sidebar */}
-      <aside className="md:w-64 bg-white shadow-md p-6 hidden md:block">
+      <aside className="md:w-64 bg-white shadow-md p-6 sm:w-36 ">
         <h2 className="text-xl font-bold mb-8">My Account</h2>
 
         {["profile", "orders", "addresses", "settings"].map((tab) => (
@@ -42,7 +42,7 @@ export default function Profile() {
         </aside>
 
       {/* Content */}
-      <main className="flex-1 md:p-8 sm:p-4">
+      <main className="flex-1 md:p-8 sm:p-6">
         {activeTab === "profile" && <ProfileInfo  />}
         {activeTab === "orders" && <Orders />}
         {activeTab === "addresses" && <Addresses />}

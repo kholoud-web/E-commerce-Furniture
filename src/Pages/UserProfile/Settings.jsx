@@ -110,7 +110,7 @@ export default function Settings() {
 
           <button
             type="submit"
-            className="bg-black text-white px-6 md:py-3 rounded-md  sm:py-3"
+            className="bg-black text-white px-6 md:py-3 rounded-md  sm:py-4"
           >
             Save Changes
           </button>
