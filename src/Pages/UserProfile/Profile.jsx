@@ -22,7 +22,7 @@ export default function Profile() {
     <div className="min-h-screen bg-gray-50 flex">
 
       {/* Sidebar */}
-      <aside className="md:w-64 bg-white shadow-md p-6 sm:w-36 ">
+      <aside className="md:w-64 bg-white shadow-md p-6 hidden md:block">
         <h2 className="text-xl font-bold mb-8">My Account</h2>
 
         {["profile", "orders", "addresses", "settings"].map((tab) => (
