@@ -5,7 +5,7 @@ export default function Orders() {
   
   const {user} = useUser();
   return (
-    <div>
+    <div >
       <h2 className="text-xl font-semibold mb-6">My Orders</h2>
 
       {user?.orders?.length === 0 ? (

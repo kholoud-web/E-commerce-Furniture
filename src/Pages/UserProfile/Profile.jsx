@@ -42,7 +42,7 @@ export default function Profile() {
         </aside>
 
       {/* Content */}
-      <main className="flex-1 md:p-8 sm:p-6">
+      <main className="flex-1 md:p-8 sm:p-6 px-2">
         {activeTab === "profile" && <ProfileInfo  />}
         {activeTab === "orders" && <Orders />}
         {activeTab === "addresses" && <Addresses />}

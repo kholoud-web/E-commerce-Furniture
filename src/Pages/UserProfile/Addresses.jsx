@@ -1,6 +1,6 @@
 export default function Addresses() {
   return (
-    <div>
+    <div >
       <h2 className="text-xl font-semibold mb-6">My Addresses</h2>
 
       <div className="bg-white p-4 rounded-xl shadow">

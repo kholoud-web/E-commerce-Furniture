@@ -54,7 +54,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
       {/* ── Edit Profile ── */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-xl font-semibold mb-4">Edit Profile</h2>
