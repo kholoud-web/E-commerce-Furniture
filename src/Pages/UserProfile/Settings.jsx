@@ -110,7 +110,7 @@ export default function Settings() {
 
           <button
             type="submit"
-            className="bg-black text-white px-6 py-3 rounded-xl"
+            className="bg-black text-white px-6 md:py-3 rounded-md  sm:py-3"
           >
             Save Changes
           </button>
@@ -189,7 +189,7 @@ export default function Settings() {
 
           <button
             type="submit"
-            className="bg-black text-white px-6 py-3 rounded-xl"
+            className="bg-black text-white px-6 md:py-3 rounded-md sm:py-2"
           >
             Update Password
           </button>

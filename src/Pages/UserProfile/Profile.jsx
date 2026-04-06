@@ -22,7 +22,7 @@ export default function Profile() {
     <div className="min-h-screen bg-gray-50 flex">
 
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md p-6">
+      <aside className="md:w-64 bg-white shadow-md p-6 sm:w-36 ">
         <h2 className="text-xl font-bold mb-8">My Account</h2>
 
         {["profile", "orders", "addresses", "settings"].map((tab) => (
@@ -38,11 +38,11 @@ export default function Profile() {
         ))}
 
         <button onClick={handleLogoutBtn}
-           className="bg-black text-white py-2  px-6 rounded-xl mt-4 font-medium cursor-pointer">LogOut</button>
+           className="bg-black text-white py-2  px-6 rounded-md mt-4 font-medium cursor-pointer">LogOut</button>
         </aside>
 
       {/* Content */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 md:p-8 sm:p-4">
         {activeTab === "profile" && <ProfileInfo  />}
         {activeTab === "orders" && <Orders />}
         {activeTab === "addresses" && <Addresses />}

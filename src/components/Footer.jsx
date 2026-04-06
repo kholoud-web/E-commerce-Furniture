@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscibed, setSubscribed] = useState(false);
   const [error, setError] = useState("false");
   const [showAlert, setShowAlert] = useState(false);
- const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const handleSubscribe = () => {
     setSubmitted(true);
-    
+
     if (!email || !email.includes("@")) {
       setError(true);
       setTimeout(() => {
@@ -39,36 +40,36 @@ export default function Footer() {
           <h4 className="font-medium text-[#9F9F9F] mb-6">Links</h4>
           <ul className="space-y-4">
             <li>
-              <a
-                href="#"
+              <Link
+                to={"/"}
                 className="font-medium hover:text-gray-500 transition"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/shop"
                 className="font-medium hover:text-gray-500 transition"
               >
                 Shop
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="font-medium hover:text-gray-500 transition"
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/contactUs"
                 className="font-medium hover:text-gray-500 transition"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -78,28 +79,28 @@ export default function Footer() {
           <h4 className="font-medium text-[#9F9F9F] mb-6">Help</h4>
           <ul className="space-y-4">
             <li>
-              <a
-                href="#"
+              <Link
                 className="font-medium hover:text-gray-500 transition"
+                to="/payment-options"
               >
                 Payment Options
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
                 className="font-medium hover:text-gray-500 transition"
+                to="/returns"
               >
                 Returns
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
                 className="font-medium hover:text-gray-500 transition"
+                to="/privacy-policy"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -120,9 +121,7 @@ export default function Footer() {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder={
-                error
-                  ? "Enter your email"
-                  : "enter a valid email address"
+                error ? "Enter your email" : "enter a valid email address"
               }
               className={`w-full outline-none text-sm bg-transparent text-black ${error ? "placeholder-red-400" : "placeholder-gray-400"}`}
               disabled={subscibed}

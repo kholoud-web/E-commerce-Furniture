@@ -10,7 +10,10 @@ import AuthLayout from "./components/AuthLayout.jsx";
 import Login from "./Pages/LoginPage/Login.jsx";
 import Register from "./Pages/RegisterPage/Register.jsx";
 import { lazy, Suspense } from "react";
-
+import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import Returns from "./Pages/Returns.jsx";
+import PaymentOptions from "./Pages/PaymentOptions.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 const ShopPage = lazy(() => import("./Pages/ShopPage/ShopPage.jsx"));
 const SingleProductPage = lazy(() =>
   import("./Pages/ProductDetails/SingleProductPage.jsx")
@@ -27,7 +30,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-
+      <ScrollToTop />
       <Suspense
         fallback={
           <div className="min-h-[60vh] flex items-center justify-center text-lg font-medium">
@@ -40,6 +43,9 @@ function App() {
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/productDetails/:id" element={<SingleProductPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/returns" element={<Returns />} />
+          <Route path="/payment-options" element={<PaymentOptions />} />
           <Route
             path="/checkout"
             element={
@@ -68,78 +74,3 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import "./App.css";
-// import NavBar from "./components/NavBar.jsx";
-// import MainHome from "./Pages/HomePage/MainHomePage.jsx";
-// import { BrowserRouter, Route, Routes } from "react-router";
-// import Footer from "./components/Footer.jsx";
-// import ShopPage from "./Pages/ShopPage/ShopPage.jsx";
-// import SingleProductPage from "./Pages/ProductDetails/SingleProductPage.jsx";
-// import CartPage from "./Pages/CartPage/CartPage.jsx";
-// import Checkout from "./Pages/CheckoutPage/Checkout.jsx";
-// import OrderSuccess from "./Pages/CheckoutPage/OrderSuccess.jsx";
-// import Features from "./components/Features.jsx";
-// import ComparisonPage from "./Pages/Comparison/ComparisonPage.jsx";
-// import ContactUsPage from "./Pages/ContactUs/ContactUsPage.jsx";
-// import AboutPage from "./Pages/AboutPage/AboutPage.jsx";
-// import Login from "./Pages/LoginPage/Login.jsx";
-// import Profile from "./Pages/UserProfile/Profile.jsx";
-// import Register from "./Pages/RegisterPage/Register.jsx";
-// import ProtectedRoute from "./components/ProtectedRoute.jsx";
-// import AuthLayout from "./components/AuthLayout.jsx";
-// import { lazy, Suspense } from "react";
-// const LazyShopPage = lazy(() => import("./Pages/ShopPage/ShopPage.jsx"));
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <NavBar />
-//       <Routes>
-//         <Route path="/" element={<MainHome />} />
-//         <Route path="/shop" element={<ShopPage />} />
-//         <Route path="/productDetails/:id" element={<SingleProductPage />} />
-//         <Route path="/cart" element={<CartPage />} />
-//         <Route path="/checkout" element={
-//          <ProtectedRoute>
-//            <Checkout />
-//           </ProtectedRoute>
-//           } />
-//         <Route path="/orderSuccess" element={<OrderSuccess />} />
-//         <Route path="/comparisonPage" element={<ComparisonPage />} />
-//         <Route path="/contactUs" element={<ContactUsPage/>}/>
-//         <Route path="/about" element={<AboutPage/>}/>
-//         <Route path="/profile" element={<Profile/>}/>
-//         <Route element={<AuthLayout/>}>
-//         <Route path="/login" element={<Login/>}/>
-//         <Route path="/register" element={<Register/>}/>
-
-//         </Route>
-//       </Routes>
-//       <Features />
-//       <Footer />
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
