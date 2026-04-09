@@ -14,6 +14,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import Returns from "./Pages/Returns.jsx";
 import PaymentOptions from "./Pages/PaymentOptions.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import ChatBot from "./components/ChatBot.jsx";
 const ShopPage = lazy(() => import("./Pages/ShopPage/ShopPage.jsx"));
 const SingleProductPage = lazy(() =>
   import("./Pages/ProductDetails/SingleProductPage.jsx")
@@ -65,7 +66,7 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
-
+      <ChatBot />
       <Features />
       <Footer />
     </BrowserRouter>
